@@ -23,4 +23,20 @@ public class EmailService {
         );
         mailSender.send(message);
     }
+
+    public void sendOrderConfirmation(String toEmail,
+                                      String orderId,
+                                      double finalAmount) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toEmail);
+        message.setSubject("Smart Grocery — Order Confirmed!");
+        message.setText(
+                "Your order has been placed successfully!\n\n" +
+                        "Order ID : " + orderId + "\n" +
+                        "Amount   : ₹" + String.format("%.2f", finalAmount) + "\n\n" +
+                        "We will deliver your order soon.\n\n" +
+                        "- Smart Grocery Team"
+        );
+        mailSender.send(message);
+    }
 }
